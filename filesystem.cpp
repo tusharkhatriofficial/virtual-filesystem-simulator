@@ -21,4 +21,26 @@ struct File{
     vector<int> blocks;
     vector<File*> children;
     string createdAt;
+};
+
+
+vector<int> allocateBlocks(int numBlocksNeeded){
+    vector<int> allocated;
+    //allocating block if it is less than max blocks limit
+    for(int i = 0; i<MAX_BLOCKS && allocated.size()<numBlocksNeeded;){
+        if(!blockUsed[i]){
+            blockUsed[i] = true;
+            allocated.push_back(i);
+        }
+    }
+
+    //if we need 4 blocks but only 3 were allocated i.e (no more free were available) we will set back all blockUsed to false
+    if(allocated.size()<numBlocksNeeded){
+        for(int i: allocated){
+            blockUsed[i] = false;
+        }
+        //returning empty array because enough blocks were not available to allocate
+        return {};
+    }
+    return allocated;
 }
