@@ -44,3 +44,33 @@ vector<int> allocateBlocks(int numBlocksNeeded){
     }
     return allocated;
 }
+
+void freeBlocks(vector<int>& blocks){
+    for(int blockNum: blocks){
+        blockUsed[blockNum] = false;
+    }
+    blocks.clear();
+}
+
+
+void writeContentToBlocks(string& content, const vector<int>& blocks){
+    int contentIndex = 0;
+    for (int b: blocks){
+        for(int i = 0; i< BLOCK_SIZE && contentIndex < content.size(); i++){
+            disk[b][i] = content[contentIndex++];
+        }
+    }
+}
+
+string readContentFromBlocks(vector<int>& blocks, int fileSize){
+    string result;
+    int readBytes = 0;
+
+    for(int b: blocks){
+        for(int i = 0; i<BLOCK_SIZE && readBytes < fileSize; i++){
+            result += disk[b][i];
+            readBytes++;
+        }
+    }
+    return result;
+}
