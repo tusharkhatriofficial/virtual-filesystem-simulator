@@ -235,3 +235,34 @@ void statFile(File* root, const string& path) {
     }
 }
 
+void help(){
+    cout << "\n📂 Welcome to tushell — Your Custom File System Shell\n";
+    cout << "------------------------------------------------------\n";
+    cout << "Supported commands:\n\n";
+    
+    cout << "📁 mkdir <path>\n";
+    cout << "    Create a new directory.\n";
+    cout << "    Example: mkdir /users/tusharkhatri/docs\n\n";
+
+    cout << "📝 write <file_path> <content>\n";
+    cout << "    Create a new file and write content to it.\n";
+    cout << "    Example: write /users/tusharkhatri/oop.java public class Hello {}\n\n";
+
+    cout << "📂 ls <directory_path>\n";
+    cout << "    List all files and folders inside a directory.\n";
+    cout << "    Example: ls /users/tusharkhatri\n\n";
+
+    cout << "📖 read <file_path>\n";
+    cout << "    Read the contents of a file.\n";
+    cout << "    Example: read /users/tusharkhatri/oop.java\n\n";
+
+    cout << "📊 stat <file_or_directory_path>\n";
+    cout << "    Show metadata like size, type, blocks, and created time.\n";
+    cout << "    Example: stat /users/tusharkhatri/oop.java\n\n";
+
+    cout << "❓ help\n";
+    cout << "    Show this help message.\n\n";
+
+    cout << "🚪 exit\n";
+    cout << "    Exit the shell.\n\n";
+}

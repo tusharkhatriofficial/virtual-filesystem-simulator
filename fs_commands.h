@@ -11,5 +11,6 @@ void readFile(File* root, const string& path);
 
 File* resolvePathToAny(File* root, const string& path);
 void statFile(File* root, const string& path);
+void help();
 
 #endif

@@ -30,12 +30,7 @@ void processCommand(File* root, const string& input){
         ss >> path;
         statFile(root, path);
     }else if(command == "help"){
-        cout<<"List of commands you can use with tushell:"<<endl;
-        cout<<"\n\n";
-        cout<<"mkdir /somedir"<<endl;
-        cout<<"write /somedir/hello.txt write the filecontent here"<<endl;
-        cout<<"ls /somedir"<<endl;
-        
+        void help();
     } else {
         cout << "Unknown command: " << command << std::endl;
     }
