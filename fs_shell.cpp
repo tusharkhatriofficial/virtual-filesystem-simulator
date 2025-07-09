@@ -30,7 +30,7 @@ void processCommand(File* root, const string& input){
         ss >> path;
         statFile(root, path);
     }else if(command == "help"){
-        void help();
+        help();
     } else {
         cout << "Unknown command: " << command << std::endl;
     }
