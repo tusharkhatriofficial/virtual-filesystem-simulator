@@ -48,13 +48,14 @@ Size: 31 bytes
 Created At: Mon Jul 07 01:32:15 2025
 Blocks Used: 1
 Block Numbers: [0]
+```
 
 ## Project structure
-├── main.cpp                 # Entry point, shell loop
-├── fs_core.h / fs_core.cpp # File system logic (blocks, files, metadata)
-├── fs_commands.h/.cpp      # All shell commands (mkdir, write, read, ls, stat)
-├── Makefile                # Build automation
-├── README.md               # You're reading it
+├── main.cpp                 # Entry point, shell loop<br>
+├── fs_core.h / fs_core.cpp # File system logic (blocks, files, metadata)<br>
+├── fs_commands.h/.cpp      # All shell commands (mkdir, write, read, ls, stat)<br>
+├── Makefile                # Build automation<br>
+├── README.md               # You're reading it<br>
 
 
 ## 🔄 How to Build and Run
