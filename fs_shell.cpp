@@ -29,6 +29,13 @@ void processCommand(File* root, const string& input){
     //     string path;
     //     ss >> path;
     //     statFile(root, path);
+    }else if(command == "help"){
+        cout<<"List of commands you can use with tushell:"<<endl;
+        cout<<"\n\n";
+        cout<<"mkdir /somedir"<<endl;
+        cout<<"write /somedir/hello.txt write the filecontent here"<<endl;
+        cout<<"ls /somedir"<<endl;
+        
     } else {
         cout << "Unknown command: " << command << std::endl;
     }
@@ -38,7 +45,7 @@ void processCommand(File* root, const string& input){
 void shell(File* root){
     string input;
     while(true){
-        cout<<">";
+        cout<<"tushell>>>";
         getline(cin, input);
         if(input == "exit"){
             break;
