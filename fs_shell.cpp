@@ -21,11 +21,11 @@ void processCommand(File* root, const string& input){
         getline(ss, content);
         content = content.substr(1);
         writeFile(root, path, content);
-    // }else if (command == "read") {
-    //     string path;
-    //     ss >> path;
-    //     readFile(root, path);
-    // } else if (command == "stat") {
+    }else if (command == "read") {
+        string path;
+        ss >> path;
+        readFile(root, path);
+    } else if (command == "stat") {
     //     string path;
     //     ss >> path;
     //     statFile(root, path);

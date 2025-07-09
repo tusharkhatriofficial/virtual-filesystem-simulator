@@ -127,7 +127,49 @@ void writeFile(File* root, const string& path, const string& content){
     newFile->parent = dir;
 
     dir->children.push_back(newFile);
-    cout<<"File" <<fileName<<" created with "<<blocks.size()<<" blocks."<<endl;
+    cout<<"File " <<fileName<<" created with "<<blocks.size()<<" blocks."<<endl;
 
 
 }
+
+
+
+void readFile(File* root, const string& path){
+
+    //getting the file with path
+    auto [dirPath, fileName] = splitFilePath(path);
+    File* dir = traversePath(root, dirPath); 
+
+    //if no such directory exists show error
+    if(!dir || !dir->isDirectory){
+        cout<<"Error: no such directory exists"<<dirPath<<endl;
+        return;
+    }
+    
+
+    //find the file in the existing directory
+    //loop through the children of current directory
+    //extract the one with sanme fileName and isDirectory to false;
+    File* tragetFile = nullptr;
+    for(File* child : dir->children){
+        if(child->name == fileName && !child->isDirectory){
+            tragetFile = child;
+            break;
+        }
+    }
+
+    //if not fond
+    if(!tragetFile){
+        cout<<"Error: File not found"<<endl;
+        return;
+    }
+
+    //read content from the target file
+    vector<int> blocks = tragetFile->blocks;
+    int fileSize = tragetFile->size;
+    string content = readContentFromBlocks(blocks, fileSize);
+    cout<<"======"<<tragetFile->name<<"======"<<endl;
+    cout<<content<<endl;
+    
+}
+

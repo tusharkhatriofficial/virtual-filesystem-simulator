@@ -7,5 +7,6 @@ File* traversePath(File* root, const string& path);
 void mkdir(File* root, const string& path);
 void writeFile(File* root, const string& path, const string& content);
 void ls(File* root, const string& path);
+void readFile(File* root, const string& path);
 
 #endif
