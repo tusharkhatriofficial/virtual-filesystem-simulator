@@ -125,8 +125,13 @@ void writeFile(File* root, const string& path, const string& content){
     newFile->size = size;
     newFile->blocks = blocks;
     newFile->parent = dir;
+    newFile->createdAt = getCurrentTime();
 
     dir->children.push_back(newFile);
+    if(blocks.size() == 1){
+         cout<<"File " <<fileName<<" created with "<<blocks.size()<<" block."<<endl;
+         return;
+    }
     cout<<"File " <<fileName<<" created with "<<blocks.size()<<" blocks."<<endl;
 
 
@@ -171,5 +176,62 @@ void readFile(File* root, const string& path){
     cout<<"======"<<tragetFile->name<<"======"<<endl;
     cout<<content<<endl;
     
+}
+
+
+File* resolvePathToAny(File* root, const string& path) {
+    if (path == "/") return root;
+
+    vector<string> folders = splitPath(path);
+    File* current = root;
+
+    for (size_t i = 0; i < folders.size(); ++i) {
+        const string& part = folders[i];
+        bool found = false;
+
+        for (File* child : current->children) {
+            if (child->name == part) {
+                // Allow directory for intermediate parts
+                // Allow file or dir for last part
+                if (i == folders.size() - 1 || child->isDirectory) {
+                    current = child;
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (!found) return nullptr;
+    }
+
+    return current;
+}
+
+
+
+void statFile(File* root, const string& path) {
+    File* target = resolvePathToAny(root, path);
+
+    if (!target) {
+        cout << "Error: File or directory not found -> " << path << endl;
+        return;
+    }
+
+    cout << "File: " << target->name << endl;
+    cout << "Type: " << (target->isDirectory ? "Directory" : "File") << endl;
+    cout << "Size: " << target->size << " bytes" << endl;
+    cout << "Created At: " << target->createdAt<<endl;
+
+    if (target->isDirectory) {
+        cout << "Children: " << target->children.size() << endl;
+    } else {
+        cout << "Blocks Used: " << target->blocks.size() << endl;
+        cout << "Block Numbers: [";
+        for (size_t i = 0; i < target->blocks.size(); ++i) {
+            cout << target->blocks[i];
+            if (i != target->blocks.size() - 1) cout << ", ";
+        }
+        cout << "]" << endl;
+    }
 }
 

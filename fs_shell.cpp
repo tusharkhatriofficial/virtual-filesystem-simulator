@@ -26,9 +26,9 @@ void processCommand(File* root, const string& input){
         ss >> path;
         readFile(root, path);
     } else if (command == "stat") {
-    //     string path;
-    //     ss >> path;
-    //     statFile(root, path);
+        string path;
+        ss >> path;
+        statFile(root, path);
     }else if(command == "help"){
         cout<<"List of commands you can use with tushell:"<<endl;
         cout<<"\n\n";
