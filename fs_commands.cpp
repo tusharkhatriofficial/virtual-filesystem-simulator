@@ -4,6 +4,7 @@
 void mkdir(File* root, const string& path){
     vector<string> folders = splitPath(path);
     File* current = root;
+    bool createdSomething = false;
 
     for(const string& folder: folders){
         bool found = false;
@@ -27,10 +28,16 @@ void mkdir(File* root, const string& path){
             newFolder->createdAt = getCurrentTime();
             current->children.push_back(newFolder);
             current = newFolder;
+            createdSomething = true;
         }
         
     }
-    cout<<"Directory created at: "<<path<<endl;
+
+    if(createdSomething){
+        cout<<"Directory created at: "<<path<<endl;
+    }else{
+        cout<<"Directory already exists: "<<path<<endl;
+    }
 }
 
 File* traversePath(File* root, const string& path){
