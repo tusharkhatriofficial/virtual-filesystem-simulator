@@ -263,6 +263,17 @@ void help(){
     cout << "❓ help\n";
     cout << "    Show this help message.\n\n";
 
+    cout << "❌ clear\n";
+    cout << "    Clear the screen.\n\n";
+
     cout << "🚪 exit\n";
     cout << "    Exit the shell.\n\n";
+}
+
+void clear(){
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
 }

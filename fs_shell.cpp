@@ -31,6 +31,8 @@ void processCommand(File* root, const string& input){
         statFile(root, path);
     }else if(command == "help"){
         help();
+    }else if(command =="clear"){
+        clear();
     } else {
         cout << "Unknown command: " << command << std::endl;
     }
